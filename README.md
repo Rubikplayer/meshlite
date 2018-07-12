@@ -47,7 +47,7 @@ pip install --find-links=download psbody-meshlite
 Get the repository as follows:
 
 ```
-git clone git@github.com:naureenm/meshlite.git
+git clone https://github.com/Rubikplayer/meshlite.git
 ```
 
 This will download the repository into a directory named `meshlite` by default.
@@ -116,6 +116,8 @@ source $WORKON_HOME/meshlite/bin/activate
 ### 5. Install MeshLite
 ----------------------
 Navigate to the meshlite directory, and run the following two commands
+
+Rubikplayer's note: before calling `make`, please make sure you have activated your virtual environment. The original [meshlite](https://github.com/MPI-IS/meshlite) will automatically create a virtualenv, while this repo will assume the user has done so manually. 
 
 ```
 make
