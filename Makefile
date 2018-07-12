@@ -1,3 +1,6 @@
+# compile the meshlite package
+# change: remove the commands to activate virtualenv (assuming user has already activated before calling `make`)
+# tianye
 
 tmpdirbuild := temporary_test
 venv_dir := $(tmpdirbuild)/venv
@@ -10,16 +13,15 @@ $(tmpdirbuild):
 	mkdir -p $(tmpdirbuild)
 
 $(tmpdirbuild)/package_creation: $(tmpdirbuild)
-	@echo "********" $(package_name) ": Building the virtualenv for installation"
-	@virtualenv --system-site-packages $(venv_dir)
-	@ . $(activate) && pip install --upgrade pip virtualenv setuptools wheel
-	@ . $(activate) && pip install numpy scipy pyopengl pyzmq
+	@echo "********" $(package_name) ": Installing dependencies"
+	@pip install --upgrade pip virtualenv setuptools wheel
+	@pip install numpy scipy pyopengl pyzmq
 
 	@echo "******** [" ${package_name} "] Creating the source distribution"
-	@ . $(activate) && python setup.py sdist
+	@python setup.py sdist
 
 	@echo "******** [" ${package_name} "] Creating the wheel distribution"
-	@ . $(activate) && python setup.py --verbose bdist_wheel
+	@python setup.py --verbose bdist_wheel
 
 	####### Cleaning some artifacts
 	@rm -rf psbody_meshlite.egg-info
